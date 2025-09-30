@@ -16,6 +16,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
+  int? _selectedMenuIndex;         
 
   final List<MenuItem> menuItems = [
     MenuItem(
@@ -124,70 +125,74 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             // Brand Banner
             Padding(
-              padding: EdgeInsets.all(16),
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 10,
-                      spreadRadius: 0,
-                    ),
-                  ],
+              padding: EdgeInsets.all(10),
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  height: 170,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 6),
+                  enlargeCenterPage: true,
+                  viewportFraction: 0.9,
                 ),
-                child: Column(
-                  children: [
-  // Slider Berita
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        height: 160,
-                        autoPlay: true,
-                        autoPlayInterval: Duration(seconds: 6),
-                        enlargeCenterPage: true,
-                        viewportFraction: 0.9,
+                items: List.generate(4, (index) {
+                  if (index < newsImages.length) {
+                    // Slide berita
+                    return Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 10,
+                            spreadRadius: 0,
+                          ),
+                        ],
                       ),
-                      items: List.generate(4, (index) {
-                        if (index < newsImages.length) {
-                          // Slide berita dari gambar
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              newsImages[index],
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          );
-                        } else {
-                          // Slide placeholder jika berita kurang dari 4
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Tidak ada berita terkini",
-                                style: TextStyle(
-                                  color: Colors.grey.shade600,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                      }),
-                    ),
-                  ],
-                ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.asset(
+                          newsImages[index],
+                          fit: BoxFit.contain,
+                          width: double.infinity,
+                        ),
+                      ),
+                    );
+                  } else {
+                    // Slide placeholder
+                    return Container(
+                      padding: EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 10,
+                            spreadRadius: 0,
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Tidak ada berita terkini",
+                          style: TextStyle(
+                            color: Colors.grey.shade600,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                }),
               ),
             ),
 
-            // Profile + Menu (menyatu full layar bawah)
+
+            // Profile + Menu 
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -271,7 +276,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           itemBuilder: (context, index) {
                             final item = menuItems[index];
                             return GestureDetector(
-                              onTap: () {
+                              onTapDown: (_) {
+                                setState(() {
+                                  _selectedMenuIndex = index; // simpan index yg ditekan
+                                });
+                              },
+                              onTapUp: (_) {
+                                setState(() {
+                                  _selectedMenuIndex = null; // reset setelah dilepas
+                                });
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -281,6 +294,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   ),
                                 );
                               },
+                              onTapCancel: () {
+                                setState(() {
+                                  _selectedMenuIndex = null; // reset jika batal
+                                });
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -288,11 +306,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     width: 72,
                                     height: 72,
                                     decoration: BoxDecoration(
-                                      color: item.color,
+                                      color: _selectedMenuIndex == index 
+                                          ? Colors.grey.shade200 
+                                          : item.color,
                                       borderRadius: BorderRadius.circular(24),
                                       border: Border.all( // outline lingkaran
-                                        color: Colors.grey.shade400,
-                                        width: 2,
+                                        color: _selectedMenuIndex == index
+                                            ? Colors.grey.shade200     // highlight border
+                                            : Colors.grey.shade400,
+                                        width: _selectedMenuIndex == index ? 3 : 2,
                                       ),
                                     ),
                                       child: Padding(
