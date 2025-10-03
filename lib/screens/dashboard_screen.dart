@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sihemat/utils/session_manager.dart';
 import '../models/menu_item.dart';
-import 'vehicle_selection_screen.dart';
 import 'under_construction_screen.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 
@@ -98,7 +97,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final role = SessionManager.userRole;
     return Scaffold(
       backgroundColor: Color(0xFFF5F5F5),
       body: Column(children: [

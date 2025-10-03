@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sihemat/screens/login_page.dart';
 import 'package:sihemat/screens/login_screen.dart';
 import 'package:sihemat/screens/register_page.dart';
 
