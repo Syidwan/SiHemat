@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sihemat/utils/session_manager.dart';
 import '../models/menu_item.dart';
 import 'under_construction_screen.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
