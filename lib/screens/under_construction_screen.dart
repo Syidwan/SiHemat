@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Screen untuk navigasi dari menu grid (tetap dengan AppBar)
 class UnderConstructionScreen extends StatelessWidget {
   final String title;
 
@@ -62,6 +63,52 @@ class UnderConstructionScreen extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Widget konten untuk bottom navigation (tanpa AppBar, integrated dengan header)
+class UnderConstructionContent extends StatelessWidget {
+  final String title;
+
+  UnderConstructionContent({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Color(0xFFF5F5F5),
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.all(32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '🚧',
+                style: TextStyle(fontSize: 80),
+              ),
+              SizedBox(height: 24),
+              Text(
+                'Under Construction',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey.shade800,
+                ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                'Halaman $title sedang dalam pengembangan',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey.shade600,
                 ),
               ),
             ],

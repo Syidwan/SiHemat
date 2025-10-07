@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sihemat/screens/dashboard_screen.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class SiHematApp extends StatelessWidget {
         fontFamily: 'Roboto',
         scaffoldBackgroundColor: Color(0xFFF5F5F5),
       ),
-      home: SplashScreen(),
+      home: DashboardScreen(),
     );
   }
 }
