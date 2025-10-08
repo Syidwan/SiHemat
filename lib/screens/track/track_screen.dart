@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'daftar_page.dart';
 import 'peta_page.dart';
+import 'package:sihemat/models/vehicle_model.dart';
 
 class TrackScreen extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class TrackScreen extends StatefulWidget {
 class _TrackScreenState extends State<TrackScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  int _selectedVehicleId = 1; // Default ke vehicle pertama
+  final GlobalKey<PetaPageState> _petaPageKey = GlobalKey<PetaPageState>();
 
   @override
   void initState() {
@@ -23,6 +26,19 @@ class _TrackScreenState extends State<TrackScreen>
     super.dispose();
   }
 
+  void _onVehicleSelected(int vehicleId) {
+    print('TrackScreen: Vehicle selected with ID: $vehicleId');
+    setState(() {
+      _selectedVehicleId = vehicleId;
+    });
+
+    // Update PetaPage langsung via GlobalKey
+    _petaPageKey.currentState?.updateSelectedVehicle(vehicleId);
+
+    // Pindah ke tab Peta
+    _tabController.animateTo(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +50,11 @@ class _TrackScreenState extends State<TrackScreen>
             color: Colors.white,
             border: Border(
               top: BorderSide(
-                color: Colors.grey.shade300, // warna garis abu di atas
-                width: 1, // ketebalan garis
+                color: Colors.grey.shade300,
+                width: 1,
               ),
               bottom: BorderSide(
-                color: Colors.grey.shade300, // opsional: garis bawah juga
+                color: Colors.grey.shade300,
                 width: 1,
               ),
             ),
@@ -63,8 +79,8 @@ class _TrackScreenState extends State<TrackScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          DaftarPage(),
-          PetaPage(),
+          DaftarPage(onVehicleSelected: _onVehicleSelected),
+          PetaPage(key: _petaPageKey, initialVehicleId: _selectedVehicleId),
         ],
       ),
     );
