@@ -4,7 +4,7 @@ import 'package:sihemat/models/vehicle_model.dart';
 class DaftarPage extends StatefulWidget {
   final Function(int) onVehicleSelected;
 
-  DaftarPage({required this.onVehicleSelected});
+  const DaftarPage({super.key, required this.onVehicleSelected});
 
   @override
   _DaftarPageState createState() => _DaftarPageState();
@@ -43,13 +43,13 @@ class _DaftarPageState extends State<DaftarPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Hapus Kendaraan'),
+        title: const Text('Hapus Kendaraan'),
         content:
             Text('Apakah Anda yakin ingin menghapus kendaraan dengan ID: $id?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Batal'),
+            child: const Text('Batal'),
           ),
           TextButton(
             onPressed: () {
@@ -58,10 +58,10 @@ class _DaftarPageState extends State<DaftarPage> {
                 globalVehicles.removeWhere((v) => v.id == id);
               });
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Kendaraan berhasil dihapus')),
+                const SnackBar(content: Text('Kendaraan berhasil dihapus')),
               );
             },
-            child: Text('Hapus', style: TextStyle(color: Colors.red)),
+            child: const Text('Hapus', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -69,22 +69,22 @@ class _DaftarPageState extends State<DaftarPage> {
   }
 
   void _handleInfo(int id) {
-    Navigator.pop(context);
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Row(
+        title: const Row(
           children: [
             Text('🚧'),
             SizedBox(width: 8),
             Text('Under Construction'),
           ],
         ),
-        content: Text('Fitur info detail kendaraan sedang dalam pengembangan.'),
+        content: const Text(
+            'Fitur info detail kendaraan sedang dalam pengembangan.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('OK'),
+            child: const Text('OK'),
           ),
         ],
       ),
@@ -97,20 +97,20 @@ class _DaftarPageState extends State<DaftarPage> {
       children: [
         // Search Bar
         Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: TextField(
             controller: _searchController,
             onChanged: (value) => setState(() => _searchQuery = value),
             decoration: InputDecoration(
               hintText: 'Cari',
-              prefixIcon: Icon(Icons.search, color: Colors.grey),
+              prefixIcon: const Icon(Icons.search, color: Colors.grey),
               filled: true,
-              fillColor: Color(0xFFF5F5F5),
+              fillColor: const Color(0xFFF5F5F5),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,
               ),
-              contentPadding: EdgeInsets.symmetric(vertical: 12),
+              contentPadding: const EdgeInsets.symmetric(vertical: 12),
             ),
           ),
         ),
@@ -118,13 +118,13 @@ class _DaftarPageState extends State<DaftarPage> {
         // Filter Tabs
         Container(
           height: 50,
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: ['semua', 'online', 'offline', 'expired'].map((filter) {
               final isActive = _activeFilter == filter;
               return Padding(
-                padding: EdgeInsets.only(right: 8),
+                padding: const EdgeInsets.only(right: 8),
                 child: ChoiceChip(
                   label: Text(
                     filter[0].toUpperCase() + filter.substring(1),
@@ -138,25 +138,25 @@ class _DaftarPageState extends State<DaftarPage> {
                   onSelected: (selected) {
                     setState(() => _activeFilter = filter);
                   },
-                  backgroundColor: Color(0xFFF5F5F5),
+                  backgroundColor: const Color(0xFFF5F5F5),
                   selectedColor: Colors.white,
                   side: BorderSide(
                     color: isActive ? Colors.grey.shade300 : Colors.transparent,
                     width: isActive ? 2 : 0,
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                 ),
               );
             }).toList(),
           ),
         ),
 
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
 
         // Vehicle List
         Expanded(
           child: _filteredVehicles.isEmpty
-              ? Center(
+              ? const Center(
                   child: Text(
                     'Tidak ada kendaraan ditemukan',
                     style: TextStyle(color: Colors.grey, fontSize: 16),
@@ -175,13 +175,13 @@ class _DaftarPageState extends State<DaftarPage> {
                           ),
                         ),
                         child: ListTile(
-                          contentPadding: EdgeInsets.symmetric(
+                          contentPadding: const EdgeInsets.symmetric(
                             horizontal: 16,
                             vertical: 8,
                           ),
                           leading: CircleAvatar(
                             radius: 28,
-                            backgroundColor: Color(0xFFE0E0E0),
+                            backgroundColor: const Color(0xFFE0E0E0),
                             child: Icon(
                               vehicle.type == 'motorcycle'
                                   ? Icons.two_wheeler
@@ -192,7 +192,7 @@ class _DaftarPageState extends State<DaftarPage> {
                           ),
                           title: Text(
                             vehicle.code,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                             ),
@@ -200,34 +200,34 @@ class _DaftarPageState extends State<DaftarPage> {
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 4),
+                              const SizedBox(height: 4),
                               Row(
                                 children: [
-                                  Icon(Icons.speed,
+                                  const Icon(Icons.speed,
                                       size: 14, color: Colors.grey),
-                                  SizedBox(width: 4),
+                                  const SizedBox(width: 4),
                                   Text(
                                     '${vehicle.totalKm}km',
-                                    style: TextStyle(fontSize: 12),
+                                    style: const TextStyle(fontSize: 12),
                                   ),
-                                  SizedBox(width: 16),
-                                  Icon(Icons.calendar_today,
+                                  const SizedBox(width: 16),
+                                  const Icon(Icons.calendar_today,
                                       size: 14, color: Colors.grey),
-                                  SizedBox(width: 4),
+                                  const SizedBox(width: 4),
                                   Text(
                                     '${vehicle.todayKm}km',
-                                    style: TextStyle(fontSize: 12),
+                                    style: const TextStyle(fontSize: 12),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 4),
+                              const SizedBox(height: 4),
                               Row(
                                 children: [
                                   Text(
                                     vehicle.plate,
-                                    style: TextStyle(fontSize: 12),
+                                    style: const TextStyle(fontSize: 12),
                                   ),
-                                  SizedBox(width: 12),
+                                  const SizedBox(width: 12),
                                   Text(
                                     vehicle.status[0].toUpperCase() +
                                         vehicle.status.substring(1),
@@ -242,7 +242,7 @@ class _DaftarPageState extends State<DaftarPage> {
                             ],
                           ),
                           trailing: PopupMenuButton<String>(
-                            icon: Icon(Icons.more_vert),
+                            icon: const Icon(Icons.more_vert),
                             onSelected: (value) {
                               if (value == 'info') {
                                 _handleInfo(vehicle.id);
@@ -251,7 +251,7 @@ class _DaftarPageState extends State<DaftarPage> {
                               }
                             },
                             itemBuilder: (context) => [
-                              PopupMenuItem(
+                              const PopupMenuItem(
                                 value: 'info',
                                 child: Row(
                                   children: [
@@ -261,7 +261,7 @@ class _DaftarPageState extends State<DaftarPage> {
                                   ],
                                 ),
                               ),
-                              PopupMenuItem(
+                              const PopupMenuItem(
                                 value: 'delete',
                                 child: Row(
                                   children: [

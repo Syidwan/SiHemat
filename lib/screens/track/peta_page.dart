@@ -1,38 +1,3 @@
-/*import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-class PetaPage extends StatefulWidget {
-  const PetaPage({super.key});
-
-  @override
-  State<PetaPage> createState() => PetaPageState();
-}
-
-class PetaPageState extends State<PetaPage> {
-  static const ptLen = LatLng(-6.949411068037853, 107.61946062733901);
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-          body: GoogleMap(
-        initialCameraPosition: const CameraPosition(
-          target: ptLen,
-          zoom: 13,
-        ),
-        markers: {
-          const Marker(
-            markerId: MarkerId('sourceLocation'),
-            icon: BitmapDescriptor.defaultMarker,
-            position: ptLen,
-          )
-        },
-      ));
-}*/
-
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -62,17 +27,18 @@ class PetaPageState extends State<PetaPage> {
     super.initState();
     print('PetaPage initState: initialVehicleId = ${widget.initialVehicleId}');
     _mapController = MapController();
-    
-    // Set initial index berdasarkan initialVehicleId
-    _currentVehicleIndex = globalVehicles.indexWhere((v) => v.id == widget.initialVehicleId);
-    
+
+    _currentVehicleIndex =
+        globalVehicles.indexWhere((v) => v.id == widget.initialVehicleId);
+
     if (_currentVehicleIndex == -1) {
       print('PetaPage initState: Vehicle not found, defaulting to 0');
       _currentVehicleIndex = 0;
     } else {
-      print('PetaPage initState: Found vehicle at index $_currentVehicleIndex (${_currentVehicle.code})');
+      print(
+          'PetaPage initState: Found vehicle at index $_currentVehicleIndex (${_currentVehicle.code})');
     }
-    
+
     // Center map setelah build
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _centerMapToCurrentVehicle();
@@ -89,15 +55,17 @@ class PetaPageState extends State<PetaPage> {
   void updateSelectedVehicle(int vehicleId) {
     print('PetaPage updateSelectedVehicle: Updating to vehicle ID $vehicleId');
     final newIndex = globalVehicles.indexWhere((v) => v.id == vehicleId);
-    
+
     if (newIndex != -1 && newIndex != _currentVehicleIndex) {
-      print('PetaPage updateSelectedVehicle: Found at index $newIndex (${globalVehicles[newIndex].code})');
+      print(
+          'PetaPage updateSelectedVehicle: Found at index $newIndex (${globalVehicles[newIndex].code})');
       setState(() {
         _currentVehicleIndex = newIndex;
       });
       _centerMapToCurrentVehicle();
     } else {
-      print('PetaPage updateSelectedVehicle: Vehicle not found or already selected');
+      print(
+          'PetaPage updateSelectedVehicle: Vehicle not found or already selected');
     }
   }
 
@@ -106,13 +74,14 @@ class PetaPageState extends State<PetaPage> {
   }
 
   void _centerMapToCurrentVehicle() {
-    print('PetaPage _centerMapToCurrentVehicle: Centering to ${_currentVehicle.code}');
+    print(
+        'PetaPage _centerMapToCurrentVehicle: Centering to ${_currentVehicle.code}');
     // Uncomment jika sudah install flutter_map
     _mapController.move(
       LatLng(_currentVehicle.latitude, _currentVehicle.longitude),
       15.0,
     );
-    
+
     // Trigger rebuild untuk update UI
     if (mounted) {
       setState(() {});
@@ -123,7 +92,8 @@ class PetaPageState extends State<PetaPage> {
     print('PetaPage _onMarkerTap: Marker tapped with ID $vehicleId');
     final index = globalVehicles.indexWhere((v) => v.id == vehicleId);
     if (index != -1 && index != _currentVehicleIndex) {
-      print('PetaPage _onMarkerTap: Switching to index $index (${globalVehicles[index].code})');
+      print(
+          'PetaPage _onMarkerTap: Switching to index $index (${globalVehicles[index].code})');
       setState(() {
         _currentVehicleIndex = index;
       });
@@ -134,15 +104,19 @@ class PetaPageState extends State<PetaPage> {
   void _nextVehicle() {
     setState(() {
       _currentVehicleIndex = (_currentVehicleIndex + 1) % globalVehicles.length;
-      print('PetaPage _nextVehicle: Switched to index $_currentVehicleIndex (${_currentVehicle.code})');
+      print(
+          'PetaPage _nextVehicle: Switched to index $_currentVehicleIndex (${_currentVehicle.code})');
     });
     _centerMapToCurrentVehicle();
   }
 
   void _previousVehicle() {
     setState(() {
-      _currentVehicleIndex = (_currentVehicleIndex - 1 + globalVehicles.length) % globalVehicles.length;
-      print('PetaPage _previousVehicle: Switched to index $_currentVehicleIndex (${_currentVehicle.code})');
+      _currentVehicleIndex =
+          (_currentVehicleIndex - 1 + globalVehicles.length) %
+              globalVehicles.length;
+      print(
+          'PetaPage _previousVehicle: Switched to index $_currentVehicleIndex (${_currentVehicle.code})');
     });
     _centerMapToCurrentVehicle();
   }
@@ -163,153 +137,12 @@ class PetaPageState extends State<PetaPage> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    
+
     return Stack(
       children: [
         // Map Container - Menggunakan Placeholder
         // Ganti dengan FlutterMap setelah install package
-        Container(
-          color: Color(0xFFE5E5E5),
-          child: Stack(
-            children: [
-              // Background Map Area
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.map,
-                      size: 100,
-                      color: Colors.grey.shade400,
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      'Flutter Map Area',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Container(
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Current Location:',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey.shade600,
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            'Lat: ${_currentVehicle.latitude.toStringAsFixed(4)}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black87,
-                            ),
-                          ),
-                          Text(
-                            'Long: ${_currentVehicle.longitude.toStringAsFixed(4)}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              
-              // Vehicle Markers (Clickable)
-              ...globalVehicles.asMap().entries.map((entry) {
-                final index = entry.key;
-                final vehicle = entry.value;
-                final isSelected = vehicle.id == _currentVehicle.id;
-                
-                // Positioning markers in a grid-like pattern for demo
-                final left = 50.0 + (index % 3) * 100.0;
-                final top = 150.0 + (index ~/ 3) * 120.0;
-                
-                return Positioned(
-                  left: left,
-                  top: top,
-                  child: GestureDetector(
-                    onTap: () => _onMarkerTap(vehicle.id),
-                    child: Column(
-                      children: [
-                        AnimatedContainer(
-                          duration: Duration(milliseconds: 200),
-                          padding: EdgeInsets.all(isSelected ? 16 : 12),
-                          decoration: BoxDecoration(
-                            color: _getStatusColor(vehicle.status),
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white,
-                              width: isSelected ? 4 : 2,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: isSelected 
-                                    ? _getStatusColor(vehicle.status).withOpacity(0.6)
-                                    : Colors.black.withOpacity(0.3),
-                                blurRadius: isSelected ? 12 : 6,
-                                spreadRadius: isSelected ? 2 : 0,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Icon(
-                            vehicle.type == 'motorcycle'
-                                ? Icons.two_wheeler
-                                : Icons.directions_car,
-                            color: Colors.white,
-                            size: isSelected ? 28 : 20,
-                          ),
-                        ),
-                        if (isSelected) ...[
-                          SizedBox(height: 4),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  blurRadius: 4,
-                                  offset: Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Text(
-                              vehicle.code,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10,
-                                color: Colors.black87,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-                );
-              }).toList(),
-            ],
-          ),
-        ),
-        
-        
+
         // CONTOH IMPLEMENTASI FLUTTER MAP (Uncomment setelah install package)
         FlutterMap(
           mapController: _mapController,
@@ -330,8 +163,8 @@ class PetaPageState extends State<PetaPage> {
                 final isSelected = vehicle.id == _currentVehicle.id;
                 return Marker(
                   point: LatLng(vehicle.latitude, vehicle.longitude),
-                  width: isSelected ? 80 : 60,
-                  height: isSelected ? 80 : 60,
+                  width: isSelected ? 90 : 60,
+                  height: isSelected ? 90 : 60,
                   child: GestureDetector(
                     onTap: () => _onMarkerTap(vehicle.id),
                     child: Column(
@@ -349,8 +182,9 @@ class PetaPageState extends State<PetaPage> {
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: isSelected 
-                                    ? _getStatusColor(vehicle.status).withOpacity(0.6)
+                                color: isSelected
+                                    ? _getStatusColor(vehicle.status)
+                                        .withOpacity(0.6)
                                     : Colors.black.withOpacity(0.3),
                                 blurRadius: isSelected ? 12 : 6,
                                 spreadRadius: isSelected ? 2 : 0,
@@ -367,26 +201,31 @@ class PetaPageState extends State<PetaPage> {
                           ),
                         ),
                         if (isSelected) ...[
-                          SizedBox(height: 4),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.3),
-                                  blurRadius: 4,
-                                  offset: Offset(0, 2),
+                          Flexible(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.3),
+                                    blurRadius: 4,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  vehicle.code,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 30,
+                                    color: Colors.black87,
+                                  ),
                                 ),
-                              ],
-                            ),
-                            child: Text(
-                              vehicle.code,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10,
-                                color: Colors.black87,
                               ),
                             ),
                           ),
@@ -399,7 +238,6 @@ class PetaPageState extends State<PetaPage> {
             ),
           ],
         ),
-        
 
         // Navigation Buttons (Left Side) - Untuk ganti kendaraan
         Positioned(
@@ -424,7 +262,8 @@ class PetaPageState extends State<PetaPage> {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: _previousVehicle,
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(8)),
                     child: Container(
                       padding: EdgeInsets.all(12),
                       child: Icon(
@@ -444,7 +283,8 @@ class PetaPageState extends State<PetaPage> {
                   color: Colors.transparent,
                   child: InkWell(
                     onTap: _nextVehicle,
-                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(8)),
+                    borderRadius:
+                        BorderRadius.vertical(bottom: Radius.circular(8)),
                     child: Container(
                       padding: EdgeInsets.all(12),
                       child: Icon(
@@ -668,7 +508,8 @@ class PetaPageState extends State<PetaPage> {
                                   _currentVehicle.status[0].toUpperCase() +
                                       _currentVehicle.status.substring(1),
                                   style: TextStyle(
-                                    color: _getStatusColor(_currentVehicle.status),
+                                    color:
+                                        _getStatusColor(_currentVehicle.status),
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12,
                                   ),

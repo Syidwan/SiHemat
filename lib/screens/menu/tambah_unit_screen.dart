@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class TambahUnitScreen extends StatelessWidget {
+  const TambahUnitScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
-        title: Text('Tambah Unit'),
+        title: const Text('Tambah Unit'),
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
         elevation: 0,
       ),
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -33,24 +35,24 @@ class TambahUnitScreen extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(30),
+                  padding: const EdgeInsets.all(30),
                   child: Image.asset(
                     'assets/images/tambah_unit.png',
                     fit: BoxFit.contain,
                   ),
                 ),
               ),
-              
-              SizedBox(height: 32),
-              
-              Text(
+
+              const SizedBox(height: 32),
+
+              const Text(
                 '🚧',
                 style: TextStyle(fontSize: 80),
               ),
-              
-              SizedBox(height: 24),
-              
-              Text(
+
+              const SizedBox(height: 24),
+
+              const Text(
                 'Tambah Unit',
                 style: TextStyle(
                   fontSize: 28,
@@ -58,9 +60,9 @@ class TambahUnitScreen extends StatelessWidget {
                   color: Colors.black87,
                 ),
               ),
-              
-              SizedBox(height: 8),
-              
+
+              const SizedBox(height: 8),
+
               Text(
                 'Under Construction',
                 style: TextStyle(
@@ -69,11 +71,12 @@ class TambahUnitScreen extends StatelessWidget {
                   color: Colors.grey.shade600,
                 ),
               ),
-              
-              SizedBox(height: 24),
-              
+
+              const SizedBox(height: 24),
+
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -96,7 +99,7 @@ class TambahUnitScreen extends StatelessWidget {
                         height: 1.5,
                       ),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     Text(
                       '🚗 Tambah kendaraan baru',
                       style: TextStyle(
@@ -104,7 +107,7 @@ class TambahUnitScreen extends StatelessWidget {
                         color: Colors.grey.shade600,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       '📝 Input data kendaraan',
                       style: TextStyle(
@@ -112,7 +115,7 @@ class TambahUnitScreen extends StatelessWidget {
                         color: Colors.grey.shade600,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       '📸 Upload foto kendaraan',
                       style: TextStyle(
@@ -123,9 +126,9 @@ class TambahUnitScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              
-              SizedBox(height: 32),
-              
+
+              const SizedBox(height: 32),
+
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -133,12 +136,13 @@ class TambahUnitScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Kembali ke Dashboard',
                   style: TextStyle(
                     fontSize: 16,

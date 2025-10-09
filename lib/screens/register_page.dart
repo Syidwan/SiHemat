@@ -63,8 +63,9 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   String? _validateConfirmPassword(String? value) {
-    if (value == null || value.isEmpty)
+    if (value == null || value.isEmpty) {
       return "Konfirmasi password harus diisi";
+    }
     if (value != passwordController.text) return "Password tidak cocok";
     return null;
   }
@@ -80,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => DashboardScreen()),
+        MaterialPageRoute(builder: (context) => const DashboardScreen()),
       );
     }
   }
@@ -128,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           validator: (v) => _validateNotEmpty(v, "Nama Depan"),
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: TextFormField(
                           controller: lastNameController,
@@ -146,13 +147,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
                       hintText: "Email",
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -161,13 +162,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: _validateEmail,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   TextFormField(
                     controller: phoneController,
                     decoration: InputDecoration(
                       hintText: "Nomor Telepon",
-                      prefixIcon: Icon(Icons.phone),
+                      prefixIcon: const Icon(Icons.phone),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -176,13 +177,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (v) => _validateNotEmpty(v, "Nomor Telepon"),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   TextFormField(
                     controller: platNomorController,
                     decoration: InputDecoration(
                       hintText: "Plat Nomor",
-                      prefixIcon: Icon(Icons.confirmation_num),
+                      prefixIcon: const Icon(Icons.confirmation_num),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -191,14 +192,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (v) => _validateNotEmpty(v, "Plat Nomor"),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   TextFormField(
                     controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Password",
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -207,14 +208,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: _validatePassword,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   TextFormField(
                     controller: confirmPasswordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Konfirmasi Password",
-                      prefixIcon: Icon(Icons.lock_outline),
+                      prefixIcon: const Icon(Icons.lock_outline),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -229,7 +230,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: companyNameController,
                     decoration: InputDecoration(
                       hintText: "Nama Perusahaan",
-                      prefixIcon: Icon(Icons.business),
+                      prefixIcon: const Icon(Icons.business),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -238,12 +239,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (v) => _validateNotEmpty(v, "Nama Perusahaan"),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
                       hintText: "Email",
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -252,13 +253,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: _validateEmail,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Password",
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -267,13 +268,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: _validatePassword,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: confirmPasswordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Konfirmasi Password",
-                      prefixIcon: Icon(Icons.lock_outline),
+                      prefixIcon: const Icon(Icons.lock_outline),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -283,7 +284,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: _validateConfirmPassword,
                   ),
                 ],
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -295,19 +296,19 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Register",
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RegisterSelection(),
+                        builder: (context) => const RegisterSelection(),
                       ),
                     );
                   },

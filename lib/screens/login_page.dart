@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
       // arahkan ke dashboard
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => DashboardScreen()),
+        MaterialPageRoute(builder: (context) => const DashboardScreen()),
       );
     }
   }
@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: emailController,
                     decoration: InputDecoration(
                       hintText: "Email Anda",
-                      prefixIcon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -128,13 +128,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     validator: _validateEmail,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Kata Sandi",
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -143,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     validator: _validatePassword,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                 ],
 
                 if (widget.role == "pengguna" || widget.role == "guest") ...[
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: platNomorController,
                     decoration: InputDecoration(
                       hintText: "Plat Nomor",
-                      prefixIcon: Icon(Icons.confirmation_num),
+                      prefixIcon: const Icon(Icons.confirmation_num),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -160,7 +160,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     validator: _validatePlatNomor,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                 ],
 
                 // Tombol Login
@@ -175,21 +175,21 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Login",
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ),
                 ),
 
-                Spacer(),
+                const Spacer(),
 
                 // Pilihan Login
                 TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(builder: (context) => const LoginScreen()),
                     );
                   },
                   child: Text(

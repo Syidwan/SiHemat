@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
+  const AccountScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFFF5F5F5),
+      color: const Color(0xFFF5F5F5),
       child: Center(
         child: Padding(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -33,16 +35,16 @@ class AccountScreen extends StatelessWidget {
                 ),
               ),
               
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               
-              Text(
+              const Text(
                 '🚧',
                 style: TextStyle(fontSize: 80),
               ),
               
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               
-              Text(
+              const Text(
                 'Halaman Akun',
                 style: TextStyle(
                   fontSize: 28,
@@ -51,7 +53,7 @@ class AccountScreen extends StatelessWidget {
                 ),
               ),
               
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               
               Text(
                 'Under Construction',
@@ -62,10 +64,10 @@ class AccountScreen extends StatelessWidget {
                 ),
               ),
               
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -88,7 +90,7 @@ class AccountScreen extends StatelessWidget {
                         height: 1.5,
                       ),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     Text(
                       '👤 Profil pengguna',
                       style: TextStyle(
@@ -96,7 +98,7 @@ class AccountScreen extends StatelessWidget {
                         color: Colors.grey.shade600,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       '⚙️ Pengaturan akun',
                       style: TextStyle(
@@ -104,7 +106,7 @@ class AccountScreen extends StatelessWidget {
                         color: Colors.grey.shade600,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       '🔒 Keamanan & privasi',
                       style: TextStyle(

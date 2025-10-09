@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sihemat/screens/menu/bantuan_screen.dart';
-import 'package:sihemat/screens/menu/cek_kendaraan_screen.dart';
+import 'package:sihemat/screens/menu/cek_kendaraan_list_page.dart';
 import 'package:sihemat/screens/menu/cek_pajak_screen.dart';
 import 'package:sihemat/screens/menu/speedometer_screen.dart';
 import 'package:sihemat/screens/menu/tambah_unit_screen.dart';
@@ -16,6 +16,8 @@ final List<String> newsImages = [
 ];
 
 class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
+
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
@@ -74,12 +76,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       children: [
         // Brand Banner
         Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: CarouselSlider(
             options: CarouselOptions(
               height: 170,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 6),
+              autoPlayInterval: const Duration(seconds: 6),
               enlargeCenterPage: true,
               viewportFraction: 0.9,
             ),
@@ -88,7 +90,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Slide berita
                 return Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -112,7 +114,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               } else {
                 // Slide placeholder
                 return Container(
-                  padding: EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -146,7 +148,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16),
                 topRight: Radius.circular(16),
               ),
@@ -162,10 +164,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 // User Profile
                 Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Row(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.blue,
                         child: Icon(
@@ -174,7 +176,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           size: 30,
                         ),
                       ),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,7 +188,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 color: Colors.grey.shade600,
                               ),
                             ),
-                            Text(
+                            const Text(
                               'Nirwan Rasyid Ridlo',
                               style: TextStyle(
                                 fontSize: 20,
@@ -198,7 +200,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.fullscreen),
+                        icon: const Icon(Icons.fullscreen),
                         onPressed: () {},
                         color: Colors.grey.shade400,
                         iconSize: 32,
@@ -212,9 +214,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Menu Grid
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         crossAxisSpacing: 20,
                         mainAxisSpacing: 20,
@@ -238,25 +240,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                             switch (item.id) {
                               case 'vehicle':
-                                targetScreen = TambahUnitScreen();
+                                targetScreen = const TambahUnitScreen();
                                 break;
                               case 'maintenance':
-                                targetScreen = CekKendaraanScreen();
+                                targetScreen =  CekKendaraanListPage();
                                 break;
                               case 'speedometer':
-                                targetScreen = SpeedometerScreen();
+                                targetScreen = const SpeedometerScreen();
                                 break;
                               case 'reports':
-                                targetScreen = CekPajakScreen();
+                                targetScreen = const CekPajakScreen();
                                 break;
                               case 'troubleshoot':
-                                targetScreen = TroubleshootScreen();
+                                targetScreen = const TroubleshootScreen();
                                 break;
                               case 'bantuan':
-                                targetScreen = BantuanScreen();
+                                targetScreen = const BantuanScreen();
                                 break;
                               default:
-                                targetScreen = Scaffold(
+                                targetScreen = const Scaffold(
                                   body: Center(
                                       child: Text("Halaman belum tersedia")),
                                 );
@@ -305,7 +307,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                         ),
                                 ),
                               ),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               Text(
                                 item.label,
                                 textAlign: TextAlign.center,
@@ -333,7 +335,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF5F5F5),
       body: Column(
         children: [
           // Header
@@ -358,12 +360,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.notifications_outlined),
+                        icon: const Icon(Icons.notifications_outlined),
                         onPressed: () {},
                         color: Colors.grey.shade600,
                       ),
                       IconButton(
-                        icon: Icon(Icons.settings_outlined),
+                        icon: const Icon(Icons.settings_outlined),
                         onPressed: () {},
                         color: Colors.grey.shade600,
                       ),
@@ -379,8 +381,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               index: _selectedIndex,
               children: [
                 _buildHomeContent(),
-                TrackScreen(),
-                AccountScreen(),
+                const TrackScreen(),
+                const AccountScreen(),
               ],
             ),
           ),
@@ -396,7 +398,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
         child: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

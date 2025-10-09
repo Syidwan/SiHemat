@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CekPajakScreen extends StatelessWidget {
+  const CekPajakScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
-        title: Text('Cek Pajak'),
+        title: const Text('Cek Pajak'),
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
         elevation: 0,
       ),
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -33,7 +35,7 @@ class CekPajakScreen extends StatelessWidget {
                   ],
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(30),
+                  padding: const EdgeInsets.all(30),
                   child: Image.asset(
                     'assets/images/cek_pajak.png',
                     fit: BoxFit.contain,
@@ -41,16 +43,16 @@ class CekPajakScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
 
-              Text(
+              const Text(
                 '🚧',
                 style: TextStyle(fontSize: 80),
               ),
 
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
 
-              Text(
+              const Text(
                 'Cek Pajak',
                 style: TextStyle(
                   fontSize: 28,
@@ -59,7 +61,7 @@ class CekPajakScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
 
               Text(
                 'Under Construction',
@@ -70,10 +72,10 @@ class CekPajakScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
 
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -96,7 +98,7 @@ class CekPajakScreen extends StatelessWidget {
                         height: 1.5,
                       ),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     // Text(
                     //   '📄 Info pajak kendaraan',
                     //   style: TextStyle(
@@ -124,7 +126,7 @@ class CekPajakScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
 
               ElevatedButton(
                 onPressed: () {
@@ -133,12 +135,12 @@ class CekPajakScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Kembali ke Dashboard',
                   style: TextStyle(
                     fontSize: 16,

@@ -4,6 +4,8 @@ import 'package:sihemat/screens/login_screen.dart';
 import 'package:sihemat/screens/register_page.dart';
 
 class RegisterSelection extends StatelessWidget {
+  const RegisterSelection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +79,7 @@ class RegisterSelection extends StatelessWidget {
                     },
                   ),
 
-                  Spacer(),
+                  const Spacer(),
 
                   // Bottom Section
                   TextButton(
@@ -85,7 +87,7 @@ class RegisterSelection extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => const LoginScreen(),
                         ),
                       );
                     },

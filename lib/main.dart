@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sihemat/screens/dashboard_screen.dart';
 import 'screens/splash_screen.dart';
 
+
 void main() {
-  runApp(SiHematApp());
+  runApp(const SiHematApp());
 }
 
 class SiHematApp extends StatelessWidget {
+  const SiHematApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,9 +18,9 @@ class SiHematApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
         fontFamily: 'Roboto',
-        scaffoldBackgroundColor: Color(0xFFF5F5F5),
+        scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       ),
-      home: DashboardScreen(),
+      home: const DashboardScreen(),
     );
   }
 }

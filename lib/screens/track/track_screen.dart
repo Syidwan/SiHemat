@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'daftar_page.dart';
 import 'peta_page.dart';
-import 'package:sihemat/models/vehicle_model.dart';
 
 class TrackScreen extends StatefulWidget {
+  const TrackScreen({super.key});
+
   @override
   _TrackScreenState createState() => _TrackScreenState();
 }
@@ -27,16 +28,35 @@ class _TrackScreenState extends State<TrackScreen>
   }
 
   void _onVehicleSelected(int vehicleId) {
-    print('TrackScreen: Vehicle selected with ID: $vehicleId');
+    print('==========================================');
+    print('TrackScreen._onVehicleSelected CALLED!');
+    print('Vehicle ID selected: $vehicleId');
+    print('Previous selectedVehicleId: $_selectedVehicleId');
+
     setState(() {
       _selectedVehicleId = vehicleId;
     });
+    print('State updated! New selectedVehicleId: $_selectedVehicleId');
 
-    // Update PetaPage langsung via GlobalKey
-    _petaPageKey.currentState?.updateSelectedVehicle(vehicleId);
-
-    // Pindah ke tab Peta
+    // Pindah ke tab Peta dulu
+    print('Switching to Peta tab (index 1)...');
     _tabController.animateTo(1);
+
+    // Delay untuk memastikan PetaPage sudah di-render
+    Future.delayed(Duration(milliseconds: 100), () {
+      // Update PetaPage langsung via GlobalKey
+      print('Calling PetaPage.updateSelectedVehicle($vehicleId)...');
+
+      if (_petaPageKey.currentState == null) {
+        print('❌ ERROR: _petaPageKey.currentState is NULL!');
+        print('PetaPage might not be initialized yet.');
+      } else {
+        print('✅ PetaPage state found, calling updateSelectedVehicle...');
+        _petaPageKey.currentState?.updateSelectedVehicle(vehicleId);
+      }
+    });
+
+    print('==========================================');
   }
 
   @override
@@ -44,7 +64,7 @@ class _TrackScreenState extends State<TrackScreen>
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(48), // tinggi area TabBar
+        preferredSize: const Size.fromHeight(48), // tinggi area TabBar
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -61,15 +81,15 @@ class _TrackScreenState extends State<TrackScreen>
           ),
           child: TabBar(
             controller: _tabController,
-            labelColor: Color(0xFFE53935),
+            labelColor: const Color(0xFFE53935),
             unselectedLabelColor: Colors.grey,
-            indicatorColor: Color(0xFFE53935),
+            indicatorColor: const Color(0xFFE53935),
             indicatorWeight: 3,
-            labelStyle: TextStyle(
+            labelStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
-            tabs: [
+            tabs: const [
               Tab(text: 'Daftar'),
               Tab(text: 'Peta'),
             ],
