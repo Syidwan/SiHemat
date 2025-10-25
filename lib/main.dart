@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sihemat/screens/dashboard_screen.dart';
 import 'screens/splash_screen.dart';
-
+import 'screens/pre_splash_screen.dart';
 
 void main() {
   runApp(const SiHematApp());
@@ -13,16 +13,14 @@ class SiHematApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SiHeman - Vehicle Tracking',
+      title: 'SiHemat - Vehicle Tracking',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.red,
         fontFamily: 'Roboto',
         scaffoldBackgroundColor: const Color(0xFFF5F5F5),
       ),
-      home: const DashboardScreen(),
+      home: const PreSplashScreen(),
     );
   }
 }
-
-// screens/splash_screen.dart

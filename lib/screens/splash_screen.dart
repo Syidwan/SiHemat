@@ -19,6 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     'assets/images/product1.png',
     'assets/images/product2.png',
     'assets/images/product3.png',
+    // 'assets/images/product4.png',
   ];
 
   @override
@@ -30,17 +31,19 @@ class _SplashScreenState extends State<SplashScreen> {
     selectedProduct = productImages[random.nextInt(productImages.length)];
 
     // Timer untuk pindah halaman
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
           transitionDuration: const Duration(milliseconds: 800),
-          pageBuilder: (context, animation, secondaryAnimation) => const LoginScreen(),
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const LoginScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(1.0, 0.0); // dari kanan
             const end = Offset.zero;
             const curve = Curves.easeInOut;
 
-            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
             var offsetAnimation = animation.drive(tween);
 
             return SlideTransition(
@@ -65,23 +68,22 @@ class _SplashScreenState extends State<SplashScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 135),
               child: Center(
-                  child: Image.asset(
+                child: Image.asset(
                   'assets/images/sihemat_logo.png',
                   width: 350,
                   fit: BoxFit.contain,
                 ),
               ),
-              
             ),
 
             // 2. Produk (random dari 3 gambar)
             Image.asset(
               selectedProduct,
-                width: (selectedProduct.contains("product1") || 
-                        selectedProduct.contains("product2"))
-                    ? 650
-                    : 500,
-                fit: BoxFit.contain,
+              width: (selectedProduct.contains("product1") ||
+                      selectedProduct.contains("product2"))
+                  ? 650
+                  : 500,
+              fit: BoxFit.contain,
             ),
 
             // 3. Sponsor (statis)

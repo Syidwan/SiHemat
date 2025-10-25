@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sihemat/screens/menu/bantuan_screen.dart';
 import 'package:sihemat/screens/menu/cek_kendaraan_list_page.dart';
-import 'package:sihemat/screens/menu/cek_pajak_screen.dart';
+import 'package:sihemat/screens/menu/cek_pajak/cek_pajak_screen.dart';
 import 'package:sihemat/screens/menu/speedometer_screen.dart';
 import 'package:sihemat/screens/menu/tambah_unit_screen.dart';
 import 'package:sihemat/screens/menu/troubleshoot_screen.dart';
 import '../models/menu_item.dart';
-import 'under_construction_screen.dart';
 import 'track/track_screen.dart';
 import 'account_screen.dart';
 import 'package:carousel_slider_plus/carousel_slider_plus.dart';
@@ -216,7 +215,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         crossAxisSpacing: 20,
                         mainAxisSpacing: 20,
@@ -240,16 +240,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
                             switch (item.id) {
                               case 'vehicle':
-                                targetScreen = const TambahUnitScreen();
+                                targetScreen = TambahUnitScreen();
                                 break;
                               case 'maintenance':
-                                targetScreen =  CekKendaraanListPage();
+                                targetScreen = CekKendaraanListPage();
                                 break;
                               case 'speedometer':
                                 targetScreen = const SpeedometerScreen();
                                 break;
                               case 'reports':
-                                targetScreen = const CekPajakScreen();
+                                targetScreen = CekPajakScreen();
                                 break;
                               case 'troubleshoot':
                                 targetScreen = const TroubleshootScreen();
@@ -340,7 +340,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         children: [
           // Header
           Material(
-            elevation: 4, 
+            elevation: 4,
             shadowColor: Colors.black.withOpacity(0.2),
             child: Container(
               padding: EdgeInsets.only(

@@ -1,0 +1,2 @@
+D:/Project/Flutter/KP_Len/sihemat/android/app/.cxx/release/5r5g4n28/x86_64/CMakeFiles/edit_cache.dir
+D:/Project/Flutter/KP_Len/sihemat/android/app/.cxx/release/5r5g4n28/x86_64/CMakeFiles/rebuild_cache.dir
